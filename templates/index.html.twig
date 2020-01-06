@@ -1,0 +1,127 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	assadaskdmasldkm
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li>Eviz</li>
+{% endblock %}
+
+{% block content %}
+
+  <table>
+	<div class="row pb-2">
+		<div class="col-10">
+			<div class="row">
+				<div class="col-8" id="filter_global">
+					<input type="text" class="global_filter form-control" id="global_filter" />
+				</div>
+				<button class="col-4 btn btn-secondary" id="advanced_search_button">vice</button>
+			</div>
+		</div>
+	</div>
+{# poznamka:
+oracle.fit.cvut.cz
+1521
+SID : ORACLE
+#}
+
+	<div class="row pb-2">
+		<div class="col-10">
+			<div id="advanced_search" class="card row">
+				<div class="col-4">
+					<div id="filter_col0" data-column="0" class="filter-container">
+						<div class="caption">Jmeno</div>
+						<div>
+							<input type="text" class="form-control column_filter" id="col0_filter" />
+						</div>
+					</div>
+					<div id="filter_col1" data-column="1" class="filter-container">
+						<div class="caption">Prijmeni</div>
+						<div>
+							<input type="text" class="form-control column_filter" id="col1_filter" />
+						</div>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div id="filter_col2" data-column="2" class="filter-container">
+						<div class="caption">Funkce</div>
+						<div>
+							<input type="text" class="form-control column_filter" id="col2_filter" />
+						</div>
+					</div>
+				</div>
+
+				<div class="col-4">
+
+					<div id="filter_col3" data-column="3" class="filter-container">
+						<div class="caption">Email</div>
+						<div>
+							<input type="text" class="form-control column_filter" id="col3_filter" />
+						</div>
+					</div>
+					<div id="filter_col4" data-column="4" class="filter-container">
+						<div class="caption">Telefon</div>
+						<div>
+							<input type="text" class="form-control column_filter" id="col4_filter" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<table id="example" class="table table-striped table-bordered" style="width:100%">
+		<thead>
+		<tr>
+			<th>Jmeno</th>
+			<th>Prijmeni</th>
+			<th>Funkce</th>
+			<th>Email</th>
+			<th class="no-sort">Telefon</th>
+			<th class="no-sort">Akce</th>
+		</tr>
+		</thead>
+		<tbody>
+			{% for employee in employees %}
+				<tr>
+					{% if app.user %}
+					<td><a href="{{ path('employee-detail', { id : employee.id } ) }}">{{ employee.surname }}</a></td>
+					<td><a href="{{ path('employee-detail', { id : employee.id } ) }}">{{ employee.lastName }}</a></td>
+					{% else %}
+					<td>{{ employee.surname }}</td>
+					<td>{{ employee.lastName }}</td>
+					{% endif %}
+					<td>{{ employee.function }}</td>
+					<td>{{ employee.email }}</td>
+					<td>{{ employee.phoneNumber }}</td>
+					<td>
+						{% if is_granted('ROLE_ADMIN') %}
+							<a href="{{ path('employee-edit', { id : employee.id } ) }}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+							</a>
+						{% elseif app.user and (app.user.email  == employee.email) %}
+							<a href="{{ path('employee-edit', { id : employee.id } ) }}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+							</a>
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+	<div class="row my-3 py-4">
+		<div class="col-6">
+			<a href="{{ path('employee-create' ) }}">
+				<button class="w-100 btn btn-success" type="submit">
+					Pridat noveho zamestnance
+				</button>
+			</a>
+		</div>
+	</div>
+
+{% endblock %}

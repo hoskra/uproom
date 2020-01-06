@@ -1,0 +1,45 @@
+INSERT INTO "user" VALUES(1,NULL,"admin","heslo","2023-09-09 21:26:47");
+
+INSERT INTO "employee" VALUES(0, "Robert", "Benes", "Uklizec", "+420498420110", "RobertBenes@matedonepy.com", "matedonepy.com/RobertBenes", "", "Zamestnan 6 mesicu.");
+INSERT INTO "employee" VALUES(1, "Jan", "Novak", "Programator", "+420880440440", "JanNovak@matedonepy.com", "matedonepy.com/JanNovak", "", "Zamestnan 6 mesicu.");
+INSERT INTO "employee" VALUES(2, "Robert", "Moudry", "Ucetni", "+420830340230", "RobertMoudry@matedonepy.com", "matedonepy.com/RobertMoudry", "", "Zamestnan 16 mesicu.");
+INSERT INTO "employee" VALUES(4, "David", "Michal", "Poradce", "+420880440230", "DavidMichal@matedonepy.com", "matedonepy.com/DavidMichal", "", "Zamestnan 12 mesicu.");
+INSERT INTO "employee" VALUES(5, "Zdenek", "Vasut", "PR", "+420880440230", "ZdenekVasut@matedonepy.com", "matedonepy.com/ZdenekVasut", "", "Zamestnan 7 mesicu.");
+INSERT INTO "employee" VALUES(6, "Igor", "Dvorak", "Programator", "+420889440230", "IgorDvorak@matedonepy.com", "matedonepy.com/IgorDvorak", "", "Zamestnan 9 mesicu.");
+INSERT INTO "employee" VALUES(7, "Igor", "Svoboda", "Programator", "+420890400230", "IgorSvoboda@matedonepy.com", "matedonepy.com/IgorSvoboda", "", "Zamestnan 8 mesicu.");
+INSERT INTO "employee" VALUES(8, "Jan", "Cerny", "Ucetni", "+420880740720", "JanCerny@matedonepy.com", "matedonepy.com/JanCerny", "", "Zamestnan 14 mesicu.");
+INSERT INTO "employee" VALUES(9, "Robert", "Krejci", "Programator", "+420580440230", "RobertKrejci@matedonepy.com", "matedonepy.com/RobertKrejci", "", "Zamestnan 5 mesicu.");
+INSERT INTO "employee" VALUES(10, "David", "Vesely", "Poradce", "+420880470480", "DavidVesely@matedonepy.com", "matedonepy.com/DavidVesely", "", "Zamestnan 7 mesicu.");
+INSERT INTO "employee" VALUES(11, "Zdenek", "Kucera", "Obchodni reditel", "+420882440230", "ZdenekKucera@matedonepy.com", "matedonepy.com/ZdenekKucera", "", "Zamestnan 6 mesicu.");
+INSERT INTO "employee" VALUES(12, "Igor", "Novotny", "Programator", "+420860440230", "IgorNovotny@matedonepy.com", "matedonepy.com/IgorNovotny", "", "Zamestnan 10 mesicu.");
+INSERT INTO "employee" VALUES(13, "Robert", "Nemec", "Ucetni", "+420886466230", "RobertNemec@matedonepy.com", "matedonepy.com/RobertNemec", "", "Zamestnan 11 mesicu.");
+INSERT INTO "employee" VALUES(14, "David", "Prochazka", "Poradce", "+420460460620", "DavidProchazka@matedonepy.com", "matedonepy.com/DavidProchazka", "", "Zamestnan 14 mesicu.");
+INSERT INTO "employee" VALUES(15, "Zdenek", "Pokorny", "Programator", "+420494420110", "ZdenekPokorny@matedonepy.com", "matedonepy.com/ZdenekPokorny", "", "Zamestnan 12 mesicu.");
+INSERT INTO "employee" VALUES(16, "Igor", "Fiala", "Programator", "+420494720110", "IgorFiala@matedonepy.com", "matedonepy.com/IgorFiala", "", "Zamestnan 6 mesicu.");
+INSERT INTO "employee" VALUES(17, "Igor", "Ruzicka", "Programator", "+420894420110", "IgorRuzicka@matedonepy.com", "matedonepy.com/IgorRuzicka", "", "Zamestnan 10 mesicu.");
+INSERT INTO "employee" VALUES(18, "Jan", "Jelinek", "Reditel", "+420494420180", "JanJelinek@matedonepy.com", "matedonepy.com/JanJelinek", "", "Zamestnan 5 mesicu.");
+
+INSERT INTO "roles" VALUES(0,"zamestnanec","má přístup k fotografiím a detailům zaměstnanců, může spravovat svůj profil, může spravovat své dočasné účty",1);
+INSERT INTO "roles" VALUES(1,"admin","má přístup ke všem zdrojům",0);
+
+INSERT INTO "employee_role" VALUES(0, 0);
+INSERT INTO "employee_role" VALUES(1, 0);
+INSERT INTO "employee_role" VALUES(1, 1);
+INSERT INTO "employee_role" VALUES(2, 0);
+INSERT INTO "employee_role" VALUES(4, 0);
+INSERT INTO "employee_role" VALUES(5, 0);
+INSERT INTO "employee_role" VALUES(6, 0);
+INSERT INTO "employee_role" VALUES(6, 0);
+INSERT INTO "employee_role" VALUES(7, 0);
+INSERT INTO "employee_role" VALUES(8, 0);
+INSERT INTO "employee_role" VALUES(9, 0);
+INSERT INTO "employee_role" VALUES(10, 0);
+INSERT INTO "employee_role" VALUES(11, 0);
+INSERT INTO "employee_role" VALUES(12, 0);
+INSERT INTO "employee_role" VALUES(12, 0);
+INSERT INTO "employee_role" VALUES(13, 0);
+INSERT INTO "employee_role" VALUES(14, 0);
+INSERT INTO "employee_role" VALUES(15, 0);
+INSERT INTO "employee_role" VALUES(16, 0);
+INSERT INTO "employee_role" VALUES(17, 0);
+INSERT INTO "employee_role" VALUES(18, 0);

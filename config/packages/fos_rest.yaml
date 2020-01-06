@@ -1,0 +1,24 @@
+# Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
+fos_rest:
+    routing_loader:
+        default_format: json
+        include_format: false
+    body_listener: true
+    zone:
+      - { path: ^/api/* }
+    format_listener:
+          rules:
+              # - { path: '^/', priorities: ['text/html', '*/*'], fallback_format: json, prefer_extension: true }
+              - { path: '^/', priorities: ['json'],  fallback_format: json, prefer_extension: true }
+              - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json, html ] }
+            #   - { path: ^/api, priorities: ['json'], fallback_format: json, prefer_exsstension: true }
+    param_fetcher_listener: true
+    # access_denied_listener:
+    #     json: true
+    # exception:
+        # enabled: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+    disable_csrf_role: IS_AUTHENTICATED_ANONYMOUSLY

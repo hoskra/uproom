@@ -1,0 +1,81 @@
+{% extends 'layout.html.twig' %}
+
+{% set main = 'account' %}
+
+{% block title %}
+	Novy ucet
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li><a href="{{ path('index') }}">Eviz</a></li>
+	<li>Vytvorit novy ucet</li>
+{% endblock %}
+
+{% block content %}
+
+
+<h1>Vytvorit novy ucet</h1>
+{{ form(form, {'attr': {'id': 'create_user'}}) }}
+
+<script>
+function renderAccounts() {
+	$.get( "/api/accounts/")
+		.done(function (data) {
+		let container = $("#accounts");
+		container.html("");
+			for (let i in data) {
+				let user = data[i];
+				if (user.email == '{{ app.user.email }}' && user.valid_to){
+					let validTo =  user.valid_to ? "Ucet je platny do: " + user.valid_to : "Ucet je permanentni."
+					let button = ' <li class="delete-account"> \
+						<button class="btn btn-danger mt-2" onclick="deleteAccount( \'' + user.id + "," + user.name + '\' )"> Smazat ucet ' + user.name + ' </button> \
+								</li> ';
+					let deleteButton = user.valid_to ?  button : "" ;
+					let content = ' \
+					<div class=\"card\"> \
+						<div class=\"row m-0 detail-container\"> \
+							<div class=\"col-12 my-2\"> \
+								<h5> ' + user.name + '  </h5> \
+								<ol> \
+									<li>  Email: ' +  user.email + ' </li> \
+									<li> ' + validTo + '</li> \
+									' + deleteButton + '\
+								</ol> \
+							</div> \
+						</div> \
+					</div> \
+					'
+					container.append(content);
+				}
+			}
+		})
+		.fail(function (err) {
+			console.log(err);
+		});
+	}
+$(document).ready(function(){
+
+	$('#create_user').on('submit', function(e){
+		e.preventDefault();
+		let data = $('#create_user').serialize();
+		//let data = $('#create_user').serializeArray();
+		console.log(data)
+
+		$.ajax({
+			url: '/api/accounts/',
+			type: 'POST',
+			dataType:   'json',
+			data: data,
+			success: function(result) {
+				window.location.href = "/user-accounts";
+				//renderAccounts();
+			}
+		});
+	});
+});
+</script>
+
+{% endblock %}
+
+
+

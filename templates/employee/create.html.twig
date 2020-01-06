@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	Novy zamestnanec
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li><a href="{{ path('index') }}">Eviz</a></li>
+	<li>Editace</li>
+{% endblock %}
+
+{% block content %}
+	<h1>Pridat noveho zamestnance</h1>
+
+	{{ form_start(form, {'attr': {'id': 'employee-form' }}) }}
+		{{ form(form) }}
+	{{ form_end(form) }}
+
+{% endblock %}

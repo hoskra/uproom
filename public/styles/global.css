@@ -1,0 +1,207 @@
+.row {
+	justify-content: center;
+}
+
+.user-photo {
+	width: 200px;
+	display: flex;
+	margin: auto;
+}
+
+.detail-container div {
+	margin: 2em 0;
+}
+
+.detail-container svg {
+	padding-right: 0.5em;
+}
+
+.breadcrumbs ol {
+	padding: 0.8em 0 0 0;
+}
+
+.row.dt-table>div {
+	width: 100%;
+}
+
+#filter_global input {
+	width: 100%;
+}
+
+#example_wrapper {
+	width: 100%;
+}
+
+#example_filter,
+#example_info,
+#example_paginate {
+	display: none;
+}
+
+#advanced_search {
+	display: none;
+	margin: 12px 0 6px 0;
+}
+
+#advanced_search .row {
+	justify-content: space-around;
+}
+
+#advanced_search.row .col-4 {
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+#advanced_search.row .caption {
+	margin: 5px 0;
+}
+
+.edit .form-control {
+	margin: 0 0 0.5em 0;
+}
+
+nav.breadcrumbs>h2 {
+	display: none;
+}
+
+nav.breadcrumbs>ol {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+nav.breadcrumbs>ol>li::after {
+	content: "\00a0\00bb\00a0"
+}
+
+nav.breadcrumbs>ol>li:last-child::after {
+	content: none;
+}
+
+.navbar-collapse.collapse {
+	flex-direction: row-reverse;
+}
+
+.roles label {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+/* _____________ dropdown _________________ */
+.dropbtn {
+	color: white;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+	background-color: #252a2e;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	overflow: auto;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown hr {
+	margin: 0;
+}
+
+#userDropdown {
+	right: 0;
+}
+
+
+.dropdown a:hover {
+	background-color: #ddd;
+}
+
+.show {
+	display: block;
+}
+
+/* ____________ modal  _______________________ */
+.account-modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 100px;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+.account-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 650px;
+}
+/* _______________________________________ */
+
+
+.card {
+	border-radius: 0 !important;
+    margin-bottom: 0.5rem;
+}
+
+
+@font-face {
+    font-family: Arcon;
+    src: url("../fonts/Arcon-Rounded-Regular.otf");
+}
+
+.navbar-dark .navbar-brand {
+	color: #3C5BFF !important;
+	font-family: Arcon;
+	font-size: 2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* _______________________________________ */
+@media only screen and (max-width: 991px) {
+	#userDropdown {
+		left: 0;
+	}
+  }

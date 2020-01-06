@@ -1,0 +1,53 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Prihlaseni{% endblock %}
+
+{% block banner %}
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('index') }}">Eviz</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="{{ path('index') }}">Zamestnanci</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-6">
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3">
+                    Jste prihlaseni jako {{ app.user.username }}, <a href="{{ path('app_logout') }}">Odhlasit se</a>
+                </div>
+            {% endif %}
+
+            <h1 class="h3 mb-3">Prihlasit se</h1>
+            <label for="inputName">Prihlasovaci jmeno</label>
+            <input type="name" value="{{ last_username }}" name="name" id="inputName" class="form-control mb-2" required autofocus>
+            <label for="inputPassword">Heslo</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+
+            <button class="btn btn-lg btn-primary btn-success my-3 w-100" type="submit">
+                Prihlasit se
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
