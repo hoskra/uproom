@@ -36,11 +36,6 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="user")
-     */
-    private $employee;
-
-    /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $superuser;
@@ -61,12 +56,12 @@ class User implements UserInterface
     private $roomManager;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Group", inversedBy="manager", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\UserGroup", inversedBy="manager", cascade={"persist", "remove"})
      */
     private $groupManager;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Group", inversedBy="members")
+     * @ORM\ManyToMany(targetEntity="App\Entity\UserGroup", inversedBy="members")
      */
     private $memberOfGroup;
 
@@ -74,6 +69,10 @@ class User implements UserInterface
      * @ORM\ManyToMany(targetEntity="App\Entity\Room", inversedBy="members")
      */
     private $memberOfRoom;
+
+    public function __toString() {
+        return $this->name;
+    }
 
     public function __construct()
     {
@@ -140,18 +139,6 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    public function getEmployee(): ?Employee
-    {
-        return $this->employee;
-    }
-
-    public function setEmployee(?Employee $employee): self
-    {
-        $this->employee = $employee;
 
         return $this;
     }
@@ -259,12 +246,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getGroupManager(): ?group
+    public function getGroupManager(): ?userGroup
     {
         return $this->groupManager;
     }
 
-    public function setGroupManager(?group $groupManager): self
+    public function setGroupManager(?userGroup $groupManager): self
     {
         $this->groupManager = $groupManager;
 
@@ -272,14 +259,14 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|group[]
+     * @return Collection|userGroup[]
      */
     public function getMemberOfGroup(): Collection
     {
         return $this->memberOfGroup;
     }
 
-    public function addMemberOfGroup(group $memberOfGroup): self
+    public function addMemberOfGroup(userGroup $memberOfGroup): self
     {
         if (!$this->memberOfGroup->contains($memberOfGroup)) {
             $this->memberOfGroup[] = $memberOfGroup;
@@ -288,7 +275,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeMemberOfGroup(group $memberOfGroup): self
+    public function removeMemberOfGroup(userGroup $memberOfGroup): self
     {
         if ($this->memberOfGroup->contains($memberOfGroup)) {
             $this->memberOfGroup->removeElement($memberOfGroup);

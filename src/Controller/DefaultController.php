@@ -9,6 +9,6 @@ class DefaultController
 	extends AbstractController {
 
 	public function actionIndex () {
-		return $this->forward( 'App\Controller\RoomController::mrdko' );
+		return $this->forward( 'App\Controller\RoomController::listAction' );
 	}
 }

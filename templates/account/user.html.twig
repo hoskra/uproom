@@ -3,107 +3,35 @@
 {% set main = 'account' %}
 
 {% block title %}
-	Moje ucty
+	{{ app.user.name }}
 {% endblock %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('index') }}">Eviz</a></li>
-	<li>Ucet</li>
+	<li><a href="{{ path('index') }}">uproom</a></li>
+	<li>{{ app.user.name }}</li>
 {% endblock %}
 
 {% block content %}
-<h1>Prehled mych uctu</h1>
-
-<h2 class="py-2">Prihlasen jako</h2>
+<h1>{{ app.user.name }}</h1>
 
 <div class="card">
 	<div class="row detail-container">
 		<div class="col-11">
-			<h2>{{ app.user.name }} </h1>
 			<ol>
 				<li>
-					Email: {{ app.user.email }}
+					Správce místnosti:
 				</li>
 				<li>
-					{% if app.user.validTo %}
-						Ucet je platny do: {{ app.user.validTo|date("m/d/Y", false) }}
-					{% else %}
-						Ucet je permanentni.
-					{% endif %}
+					Správce skupiny:
+				</li>
+				<li>
+					Uživatel místností:
+				</li>
+				<li>
+					Člen skupin:
 				</li>
 			</ol>
 		</div>
 	</div>
 </div>
-
-{% if app.user.validTo == null %}
-	<div class="row my-3">
-		<div class="col-6">
-			<a href="{{ path('account-create') }}">
-				<button class="w-100 btn btn-success" type="submit">Vytvorit novy ucet</button>
-			</a>
-		</div>
-	</div>
-{% else %}
-	<div class="alert">
-		Pro spravu svych uctu se prihlaste svym permanentnim uctem.
-	</div>
-{% endif %}
-
-<h2 class="py-2">Docasne ucty</h2>
-<div id="accounts"></div>
-
-<script>
-function deleteAccount(par) {
-	let parameter = par.split(",");
-	let id = parameter[0];
-	let name = parameter[1];
-	if ( confirm("Opravdu chcete smazat ucet " + name + "?") ) {
-		$.ajax({
-			url: '/api/accounts/' + id,
-			type: 'DELETE',
-			success: function(result) {
-				renderAccounts();
-			}
-		});
-	}
-}
-function renderAccounts() {
-	$.get( "/api/accounts/")
-		.done(function (data) {
-		let container = $("#accounts");
-		container.html("");
-			for (let i in data) {
-				let user = data[i];
-				if (user.email == '{{ app.user.email }}' && user.valid_to){
-					let validTo =  user.valid_to ? "Ucet je platny do: " + user.valid_to : "Ucet je permanentni."
-					let button = ' <li class="delete-account"> \
-						<button class="btn btn-danger mt-2" onclick="deleteAccount( \'' + user.id + "," + user.name + '\' )"> Smazat ucet ' + user.name + ' </button> \
-								</li> ';
-					let deleteButton = user.valid_to ?  button : "" ;
-					let content = ' \
-					<div class=\"card\"> \
-						<div class=\"row m-0 detail-container\"> \
-							<div class=\"col-12 my-2\"> \
-								<h5> ' + user.name + '  </h5> \
-								<ol> \
-									<li>  Email: ' +  user.email + ' </li> \
-									<li> ' + validTo + '</li> \
-									' + deleteButton + '\
-								</ol> \
-							</div> \
-						</div> \
-					</div> \
-					'
-					container.append(content);
-				}
-			}
-		})
-		.fail(function (err) {
-			console.log(err);
-		});
-	}
-renderAccounts();
-</script>
-
 {% endblock %}

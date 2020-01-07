@@ -48,6 +48,10 @@ class Room
      */
     private $isPrivate;
 
+    public function __toString() {
+        return $this->name;
+    }
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();

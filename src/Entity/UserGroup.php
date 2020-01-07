@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\GroupRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UserGroupRepository")
  */
-class Group
+class UserGroup
 {
     /**
      * @ORM\Id()
@@ -32,6 +32,10 @@ class Group
      * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="memberOfGroup")
      */
     private $members;
+
+    public function __toString() {
+        return $this->name;
+    }
 
     public function __construct()
     {

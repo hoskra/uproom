@@ -14,19 +14,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class AccountController extends AbstractController
 {
-    // /**
-	//  * @Route("/account", name="account")
-	//  */
-    // public function account () {
-
-
-    //     $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-
-    //     return $this->render('account/index.html.twig', [
-	// 		'users' => $users,
-	// 	]);
-	// }
-
     /**
 	 * @Route("/user-accounts", name="user-accounts")
 	 */
@@ -38,37 +25,37 @@ class AccountController extends AbstractController
 		]);
     }
 
+	//* @IsGranted("ROLE_ADMIN")
+
     /**
 	 * @Route("/account", name="account")
-	 * @IsGranted("ROLE_ADMIN")
 	 */
 	public function index( Request $request): Response
     {
-		// $this->denyAccessUnlessGranted(AccountVoter::NEW, $this->getUser());
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
-		$account = new User;
-		$account->setValidTo(\DateTime::createFromFormat('Y-m-d', "2023-09-09"));
-		$account->setRoles(array("ROLE_EMPLOYEE"));
-
-        $form = $this->createForm(UserType::class, $account, [
-			'action' => $this->generateUrl('account'),
-		]);
-
-		$form->handleRequest($request);
-
-		if ( $form->isSubmitted() && $form->isValid() ) {
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($account);
-			$em->flush();
-			$this->addFlash('success', 'Ucet vytvoren.');
-			return $this->redirectToRoute('account', [
-				'id' => $account->getId(),
-				]);
-			}
-
+//		$account = new User;
+//		$account->setValidTo(\DateTime::createFromFormat('Y-m-d', "2023-09-09"));
+//		$account->setRoles(array("ROLE_EMPLOYEE"));
+//
+//        $form = $this->createForm(UserType::class, $account, [
+//			'action' => $this->generateUrl('account'),
+//		]);
+//
+//		$form->handleRequest($request);
+//
+//		if ( $form->isSubmitted() && $form->isValid() ) {
+//			$em = $this->getDoctrine()->getManager();
+//			$em->persist($account);
+//			$em->flush();
+//			$this->addFlash('success', 'Ucet vytvoren.');
+//			return $this->redirectToRoute('account', [
+//				'id' => $account->getId(),
+//				]);
+//			}
+//
 			return $this->render('account/index.html.twig', [
-				'form' => $form->createView(),
+		//		'form' => $form->createView(),
 				'users' => $users
 		]);
 	}

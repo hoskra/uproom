@@ -34,12 +34,10 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 					<div class="navbar-nav">
-					<a class="nav-item nav-link active" href="{{ path('index') }}">rezervace</a>
-					<a class="nav-item nav-link active" href="{{ path('index') }}">místnosti</a>
-					<a class="nav-item nav-link active" href="{{ path('index') }}">skupiny</a>
-					{% if is_granted('ROLE_ADMIN') %}
-						<a class="nav-item nav-link" href="{{ path('account') }}">uživatelé</a>
-					{% endif %}
+					<a class="nav-item nav-link active" href="{{ path('reservation') }}">rezervace</a>
+					<a class="nav-item nav-link" href="{{ path('index') }}">místnosti</a>
+					<a class="nav-item nav-link" href="{{ path('group') }}">skupiny</a>
+					<a class="nav-item nav-link" href="{{ path('account') }}">uživatelé</a>
 					{% if app.user %}
 						<li class="nav-item dropdown">
 							<div class="dropdown">
